@@ -1,0 +1,237 @@
+/* ===== Global ===== */
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  overscroll-behavior:none;
+  background:#f4f4f4;
+}
+
+button{
+  border:none;
+  outline:none;
+  cursor:pointer;
+  box-sizing:border-box;
+}
+
+/* ===== Layout ===== */
+
+.app{
+  display:flex;
+  min-height:100vh;
+}
+
+/* ===== Sidebar ===== */
+
+.sidebar{
+  width:220px;
+  background:#1e1e2f;
+  color:white;
+  padding:20px;
+}
+
+.sidebar ul{
+  list-style:none;
+  padding:0;
+}
+
+.sidebar li{
+  padding:12px;
+  cursor:pointer;
+  border-radius:8px;
+}
+
+.sidebar li:hover{
+  background:#39393a;
+}
+
+/* ===== Content ===== */
+
+.content{
+  flex:1;
+  padding:30px;
+  padding-bottom:80px;
+}
+
+/* ===== Cards ===== */
+
+.card-container{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.card{
+  width:200px;
+  background:white;
+  padding:15px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  position:relative;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+}
+
+.fav-icon{
+  position:absolute;
+  top:10px;
+  right:10px;
+  font-size:18px;
+}
+
+/* ===== Modal ===== */
+
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:fadeIn .2s ease;
+}
+
+.modal-content{
+  width:90%;
+  max-width:400px;
+  padding:30px 20px 20px 20px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  color:white;
+  text-align:center;
+  position:relative;
+}
+
+/* ===== Close Button ===== */
+
+.close-btn{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:22px;
+  color:white;
+  cursor:pointer;
+}
+
+/* ===== Input ===== */
+
+.modal-content input{
+  width:100%;
+  padding:10px;
+  margin-top:12px;
+  border-radius:6px;
+  border:none;
+  font-size:15px;
+  box-sizing:border-box;
+}
+
+/* ===== Buttons ===== */
+
+.button-group{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.button-group button{
+  flex:1;
+  padding:10px;
+  border-radius:6px;
+  font-size:14px;
+}
+
+/* Convert button */
+
+.button-group button:first-child{
+  background:#ffffff;
+  color:#333;
+}
+
+/* Clear button */
+
+.clear-btn{
+  background:#ff4d4d;
+  color:white;
+}
+
+.clear-btn:hover{
+  background:#cc0000;
+}
+
+/* ===== Result Box ===== */
+
+.result-box{
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  background:rgba(255,255,255,0.25);
+  backdrop-filter:blur(5px);
+}
+
+/* ===== Animations ===== */
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width:768px){
+
+  .app{
+    flex-direction:column;
+  }
+
+  .sidebar{
+    display:none;
+  }
+
+  .content{
+    padding:15px;
+    padding-bottom:80px;
+  }
+
+  .card-container{
+    justify-content:center;
+  }
+
+  .card{
+    width:100%;
+    max-width:320px;
+  }
+
+}
+
+/* ===== Bottom Mobile Navigation ===== */
+
+.mobile-nav{
+  display:none;
+}
+
+@media (max-width:768px){
+
+  .mobile-nav{
+    display:flex;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:#1e1e2f;
+    color:white;
+    justify-content:space-around;
+    padding:12px 0;
+  }
+
+  .mobile-nav div{
+    cursor:pointer;
+    font-size:14px;
+  }
+
+}

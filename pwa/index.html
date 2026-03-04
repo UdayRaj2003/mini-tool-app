@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mini Tool App</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3>Menu</h3>
+        <ul>
+            <li onclick="showSection('tools')">🛠 Tools</li>
+            <li onclick="showSection('favorites')">⭐ Favorites</li>
+        </ul>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+        <div id="tools" class="section">
+            <h2>Available Tools</h2>
+            <div id="toolContainer" class="card-container"></div>
+        </div>
+
+        <div id="favorites" class="section" style="display:none;">
+            <h2>Favorite Tools</h2>
+            <div id="favContainer" class="card-container"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Tool Modal -->
+
+<div id="toolModal" class="modal" style="display:none;">
+
+    <div class="modal-content">
+
+        <span class="close-btn" onclick="closeTool()">✕</span>
+
+        <h2>Epoch → IST Converter</h2>
+
+        <input type="number" id="epochInput" placeholder="Enter epoch seconds">
+
+        <div class="button-group">
+            <button onclick="convertEpoch()">Convert</button>
+            <button class="clear-btn" onclick="clearTool()">Clear</button>
+        </div>
+
+        <div id="resultBox" class="result-box" style="display:none;">
+            <h4>Converted Time (IST)</h4>
+            <p id="result"></p>
+            <button onclick="copyResult()">Copy</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Mobile Bottom Navigation -->
+
+<div class="mobile-nav">
+    <div onclick="showSection('tools')">🛠 Tools</div>
+    <div onclick="showSection('favorites')">⭐ Favorites</div>
+</div>
+
+<script src="main.js"></script>
+
+</body>
+</html>

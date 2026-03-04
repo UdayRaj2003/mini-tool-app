@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Mini Tool App",
+  "version": "1.0",
+  "description": "Epoch to IST Converter Tool",
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Mini Tool App"
+  },
+
+  "icons": {
+    "16": "icon-192.png",
+    "48": "icon-192.png",
+    "128": "icon-512.png"
+  }
+}
