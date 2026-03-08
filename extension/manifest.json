@@ -5,7 +5,7 @@
   "description": "Epoch to IST Converter Tool",
 
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "../index.html",
     "default_title": "Mini Tool App"
   },
 
