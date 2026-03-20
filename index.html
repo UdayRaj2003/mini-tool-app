@@ -1,61 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Mini Tool App</title>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#667eea">
 
+    <title>Mini Tool App</title>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- PWA -->
     <link rel="manifest" href="manifest.json">
+
+    <!-- Optional favicon (removes 404 error) -->
+    <link rel="icon" href="assets/icons/icon-192.png">
 </head>
 
 <body>
 
-<div class="app">
+    <div class="app">
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h3>Menu</h3>
-        <ul>
-            <li onclick="location.hash='/'">🛠 Tools</li>
-            <li onclick="location.hash='/favorites'">⭐ Favorites</li>
-        </ul>
-    </div>
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <h3>Menu</h3>
+            <ul>
+                <li id="nav-tools">🛠 Tools</li>
+                <li id="nav-favorites">⭐ Favorites</li>
+            </ul>
+        </div>
 
-    <!-- Content -->
-    <div class="content">
+        <!-- Content -->
+        <div class="content" id="content">
 
-        <!-- ROUTER CONTENT -->
-        <div id="app">
+            <div id="app">
 
-            <!-- Default tools page -->
-            <div id="tools" class="section">
-                <h2>Available Tools</h2>
-                <div id="toolContainer" class="card-container"></div>
-            </div>
+                <!-- Tools -->
+                <div id="tools" class="section">
+                    <h2>Available Tools</h2>
+                    <div id="toolContainer" class="card-container"></div>
+                </div>
 
-            <div id="favorites" class="section" style="display:none;">
-                <h2>Favorite Tools</h2>
-                <div id="favContainer" class="card-container"></div>
+                <!-- Favorites -->
+                <div id="favorites" class="section" style="display:none;">
+                    <h2>Favorite Tools</h2>
+                    <div id="favContainer" class="card-container"></div>
+                </div>
+
             </div>
 
         </div>
 
     </div>
 
-</div>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <div id="mob-tools">🛠 Tools</div>
+        <div id="mob-favorites">⭐ Favorites</div>
+    </div>
 
-<!-- Mobile Bottom Navigation -->
+    <!-- ❌ IMPORTANT: NO isExtension HERE -->
+    <!-- ✅ All logic handled in main.js -->
 
-<div class="mobile-nav">
-    <div onclick="location.hash='/'">🛠 Tools</div>
-    <div onclick="location.hash='/favorites'">⭐ Favorites</div>
-</div>
-
-<script src="main.js"></script>
+    <script src="main.js"></script>
 
 </body>
-</html> 
+
+</html>

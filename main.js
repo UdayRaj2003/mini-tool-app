@@ -1,6 +1,13 @@
 let tools = [];
 let mainLayout = "";
 
+
+function getAsset(path) {
+  if (typeof chrome !== "undefined" && chrome.runtime && chrome.runtime.getURL) {
+    return chrome.runtime.getURL(path);
+  }
+  return path;
+}
 /* =========================
    LOAD TOOLS
 ========================= */
@@ -9,12 +16,13 @@ async function loadTools() {
 
   try {
 
-    const res = await fetch("./tools.json");
+    // const res = await fetch(getAsset("./tools.json"));
+    const res = await fetch(getAsset("tools.json"));
     const toolPaths = await res.json();
 
     for (const path of toolPaths) {
 
-      const tool = await fetch(path).then(r => r.json());
+      const tool = await fetch(getAsset(path)).then(r => r.json());
       tools.push(tool);
 
     }
@@ -43,7 +51,7 @@ async function router() {
 
     try {
 
-      const res = await fetch(`tools/${id}/index.html`);
+      const res = await fetch(getAsset(`tools/${id}/index.html`));
 
       if (!res.ok) {
         document.getElementById("app").innerHTML = "<h3>Tool not found</h3>";
@@ -57,8 +65,40 @@ async function router() {
       const doc = parser.parseFromString(html, "text/html");
 
       // Inject body only
-      document.getElementById("app").innerHTML = doc.body.innerHTML;
 
+      document.querySelectorAll(".tool-script").forEach(el => el.remove());
+      document.querySelectorAll(".tool-style").forEach(el => el.remove());
+      const app = document.getElementById("app");
+      app.innerHTML = "";
+
+      // 🔥 TOOL WRAPPER
+      const wrapper = document.createElement("div");
+      wrapper.className = "tool-root";
+      wrapper.innerHTML = doc.body.innerHTML;
+
+      // 🔥 CLOSE BUTTON
+      const closeBtn = document.createElement("button");
+      closeBtn.innerText = "✖";
+      closeBtn.className = "close-floating";
+
+      closeBtn.addEventListener("click", () => {
+
+        const isExtension =
+          typeof chrome !== "undefined" &&
+          chrome.runtime &&
+          chrome.runtime.id;
+
+        if (isExtension) {
+          location.hash = "#/";
+        } else {
+          history.back();
+        }
+
+      });
+
+      // append
+      app.appendChild(wrapper);
+      app.appendChild(closeBtn);
       /* =========================
          LOAD TOOL CSS
       ========================= */
@@ -67,8 +107,9 @@ async function router() {
 
         const css = document.createElement("link");
         css.rel = "stylesheet";
-        css.href = `tools/${id}/${link.getAttribute("href")}`;
-
+        // css.href = `tools/${id}/${link.getAttribute("href")}`;
+        css.href = getAsset(`tools/${id}/${link.getAttribute("href")}`);
+        css.classList.add("tool-style");
         document.head.appendChild(css);
 
       });
@@ -82,15 +123,16 @@ async function router() {
         const script = document.createElement("script");
 
         if (s.src) {
-          script.src = `tools/${id}/${s.getAttribute("src")}`;
+          script.src = getAsset(`tools/${id}/${s.getAttribute("src")}`);
+          script.defer = true;
+          script.classList.add("tool-script");
         } else {
-          script.textContent = s.textContent;
+          console.warn("Inline scripts are not allowed in extension");
         }
 
         document.body.appendChild(script);
 
       });
-
     } catch {
 
       document.getElementById("app").innerHTML = "<h3>Tool not found</h3>";
@@ -100,7 +142,10 @@ async function router() {
   }
 
   else if (hash === "#/favorites") {
-
+    if (!tools.length) {
+      document.getElementById("app").innerHTML = "<p>Loading tools...</p>";
+      return;
+    }
     document.getElementById("app").innerHTML = mainLayout;
 
     renderTools();
@@ -114,7 +159,10 @@ async function router() {
 
   // DEFAULT PAGE
   else {
-
+    if (!tools.length) {
+      document.getElementById("app").innerHTML = "<p>Loading tools...</p>";
+      return;
+    }
     document.getElementById("app").innerHTML = mainLayout;
 
     renderTools();
@@ -127,6 +175,30 @@ async function router() {
 /* =========================
    NAVIGATION
 ========================= */
+
+function bindNavigation() {
+  const toolsBtn = document.getElementById("nav-tools");
+  const favBtn = document.getElementById("nav-favorites");
+
+  const mobTools = document.getElementById("mob-tools");
+  const mobFav = document.getElementById("mob-favorites");
+
+  if (toolsBtn) toolsBtn.addEventListener("click", () => {
+    location.hash = "#/";
+  });
+
+  if (favBtn) favBtn.addEventListener("click", () => {
+    location.hash = "#/favorites";
+  });
+
+  if (mobTools) mobTools.addEventListener("click", () => {
+    location.hash = "#/";
+  });
+
+  if (mobFav) mobFav.addEventListener("click", () => {
+    location.hash = "#/favorites";
+  });
+}
 
 function showSection(section) {
 
@@ -185,15 +257,20 @@ function renderTools() {
 
     card.onclick = () => openTool(tool);
 
-    card.innerHTML = `
-      <span class="fav-icon"
-        onclick="event.stopPropagation(); toggleFavorite('${tool.id}')">
-        ${favs.includes(tool.id) ? "⭐" : "☆"}
-      </span>
+    const favIcon = document.createElement("span");
+    favIcon.className = "fav-icon";
+    favIcon.innerText = favs.includes(tool.id) ? "⭐" : "☆";
 
-      <h4>${tool.icon || "🛠"} ${tool.name}</h4>
-    `;
+    favIcon.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleFavorite(tool.id);
+    });
 
+    const title = document.createElement("h4");
+    title.innerText = `${tool.icon || "🛠"} ${tool.name}`;
+
+    card.appendChild(favIcon);
+    card.appendChild(title);
     container.appendChild(card);
 
   });
@@ -224,14 +301,20 @@ function renderFavorites() {
 
       card.onclick = () => openTool(tool);
 
-      card.innerHTML = `
-        <span class="fav-icon"
-          onclick="event.stopPropagation(); toggleFavorite('${tool.id}')">
-          ⭐
-        </span>
+      const favIcon = document.createElement("span");
+      favIcon.className = "fav-icon";
+      favIcon.innerText = "⭐";
 
-        <h4>${tool.icon || "🛠"} ${tool.name}</h4>
-      `;
+      favIcon.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleFavorite(tool.id);
+      });
+
+      const title = document.createElement("h4");
+      title.innerText = `${tool.icon || "🛠"} ${tool.name}`;
+
+      card.appendChild(favIcon);
+      card.appendChild(title);
 
       container.appendChild(card);
 
@@ -254,18 +337,18 @@ function openTool(tool) {
 /* =========================
    SERVICE WORKER
 ========================= */
+const isExtension =
+  typeof chrome !== "undefined" &&
+  chrome.runtime &&
+  chrome.runtime.id;
 
-if ("serviceWorker" in navigator) {
-
+if (!isExtension && "serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-
     navigator.serviceWorker
-      .register("./service-worker.js")
+      .register("service-worker.js")
       .then(reg => console.log("SW registered:", reg.scope))
       .catch(err => console.log("SW error:", err));
-
   });
-
 }
 
 
@@ -275,9 +358,14 @@ if ("serviceWorker" in navigator) {
 
 async function startApp() {
 
-  mainLayout = document.getElementById("app").innerHTML;
-
   await loadTools();
+
+  if (isExtension) {
+    document.body.classList.add("extension-mode");
+  }
+
+  mainLayout = document.getElementById("app").innerHTML;
+  bindNavigation();
 
   router();
 

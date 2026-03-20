@@ -1,154 +1,290 @@
-/* ===== Global ===== */
-
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  overscroll-behavior:none;
-  background:#f4f4f4;
+/* =========================
+   GLOBAL RESET
+========================= */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f4f6;
 }
 
-button{
-  border:none;
-  outline:none;
-  cursor:pointer;
-  box-sizing:border-box;
+/* =========================
+   APP LAYOUT
+========================= */
+.app {
+  display: flex;
+  min-height: 100vh;
 }
 
-/* ===== Layout ===== */
-
-.app{
-  display:flex;
-  min-height:100vh;
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+  width: 200px;
+  background: #1f2937;
+  color: white;
+  padding: 15px;
 }
 
-/* ===== Sidebar ===== */
-
-.sidebar{
-  width:220px;
-  background:#1e1e2f;
-  color:white;
-  padding:20px;
+.sidebar h3 {
+  margin-top: 0;
 }
 
-.sidebar ul{
-  list-style:none;
-  padding:0;
+.sidebar ul {
+  list-style: none;
+  padding: 0;
 }
 
-.sidebar li{
-  padding:12px;
-  cursor:pointer;
-  border-radius:8px;
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  display: block;
+  transition: 0.2s;
 }
 
-.sidebar li:hover{
-  background:#39393a;
+.sidebar li:hover {
+  background: #374151;
 }
 
-/* ===== Content ===== */
-
-.content{
-  flex:1;
-  padding:30px;
-  padding-bottom:80px;
+/* =========================
+   CONTENT
+========================= */
+.content {
+  flex: 1;
+  padding: 20px;
 }
 
-/* ===== Cards ===== */
-
-.card-container{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
+/* =========================
+   SECTIONS
+========================= */
+.section {
+  margin-top: 10px;
 }
 
-.card{
-  width:200px;
-  background:white;
-  padding:15px;
-  border-radius:12px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  position:relative;
-  cursor:pointer;
-  transition:0.25s;
+/* =========================
+   CARD GRID (TOOLS)
+========================= */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
 }
 
-.card:hover{
-  transform:translateY(-4px);
+/* =========================
+   TOOL CARD
+========================= */
+.card {
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: 0.2s;
 }
 
-.fav-icon{
-  position:absolute;
-  top:10px;
-  right:10px;
-  font-size:18px;
+.card:hover {
+  transform: translateY(-3px);
 }
 
-/* ===== Tool Page ===== */
-
-.tool-page{
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+/* =========================
+   FAVORITE ICON
+========================= */
+.fav-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
 
-/* ===== Animations ===== */
-
-@keyframes fadeIn{
-  from{opacity:0}
-  to{opacity:1}
+/* =========================
+   MOBILE NAV
+========================= */
+.mobile-nav {
+  display: none;
+}
+.mobile-nav div {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
 }
 
-/* ===== Responsive Layout ===== */
+/* =========================
+   CLOSE BUTTON
+========================= */
 
-@media (max-width:768px){
+.back-btn {
+  margin: 10px;
+  padding: 8px 12px;
+  background: #1f2937;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
 
-  .app{
-    flex-direction:column;
+.back-btn:hover {
+  background: #374151;
+}
+.mobile-nav div:hover {
+  background: #e5e7eb;
+}
+
+/* =========================
+   TOOL INPUT STYLES
+========================= */
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.primary {
+  background: #667eea;
+  color: white;
+}
+
+.primary:hover {
+  background: #5563d1;
+}
+
+.secondary {
+  background: #e5e7eb;
+}
+
+.secondary:hover {
+  background: #d1d5db;
+}
+
+.result-box {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f9fafb;
+  border-radius: 8px;
+  display: none;
+}
+
+.copy-btn {
+  margin-top: 8px;
+  background: #10b981;
+  color: white;
+}
+
+.copy-btn:hover {
+  background: #059669;
+} 
+ /* =========================
+   FLOATING CLOSE BUTTON
+========================= */
+
+.close-floating {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* hover */
+.close-floating:hover {
+  background: black;
+}
+/* =========================
+   TOOL ISOLATION
+========================= */
+ 
+.tool-root * {
+  box-sizing: border-box;
+}
+/* optional: reapply font */
+.tool-root {
+  font-family: Arial, sans-serif;
+}
+
+/* =========================
+   EXTENSION MODE
+========================= */
+ 
+
+.extension-mode {
+  width: 360px;
+  min-height: 500px;
+  overflow-x: hidden;
+}
+
+/* Hide sidebar */
+.extension-mode .sidebar {
+  display: none;
+}
+
+/* Full width content */
+.extension-mode .content {
+  margin: 0;
+  padding: 10px;
+}
+
+/* Grid → single column */
+.extension-mode .card-container {
+  grid-template-columns: 1fr;
+}
+
+/* Cards spacing */
+.extension-mode .card {
+  margin-bottom: 10px;
+}
+
+/* Mobile nav always visible */
+.extension-mode .mobile-nav {
+  display: flex;
+}
+
+
+
+/* meow */
+@media (max-width: 500px) {
+  .sidebar {
+    display: none;
   }
 
-  .sidebar{
-    display:none;
+  .content {
+    padding: 10px;
   }
 
-  .content{
-    padding:15px;
-    padding-bottom:80px;
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    justify-content: space-around;
+    padding: 10px;
+    border-top: 1px solid #ccc;
   }
-
-  .card-container{
-    justify-content:center;
-  }
-
-  .card{
-    width:100%;
-    max-width:320px;
-  }
-
-}
-
-/* ===== Bottom Mobile Navigation ===== */
-
-.mobile-nav{
-  display:none;
-}
-
-@media (max-width:768px){
-
-  .mobile-nav{
-    display:flex;
-    position:fixed;
-    bottom:0;
-    width:100%;
-    background:#1e1e2f;
-    color:white;
-    justify-content:space-around;
-    padding:12px 0;
-  }
-
-  .mobile-nav div{
-    cursor:pointer;
-    font-size:14px;
-  }
-
 }
