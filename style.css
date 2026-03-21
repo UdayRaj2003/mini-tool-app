@@ -1,10 +1,37 @@
 /* =========================
+   VARIABLES (GLOBAL SYSTEM)
+========================= */
+:root {
+  --bg-main: #f7f6fb;
+  --bg-sidebar: #efedf5;
+  --bg-card: #f3eff8;
+  --bg-hover: #ebe6f5;
+
+  --text-primary: #222;
+  --text-secondary: #666;
+
+  --border: #e4e4e7;
+
+  --accent-light: #e9e5f3;
+  --icon-bg: #e2dbf5;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+
+  --transition: 0.2s ease;
+}
+
+/* =========================
    GLOBAL RESET
 ========================= */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f3f4f6;
+  background: var(--bg-main);
 }
 
 /* =========================
@@ -19,14 +46,20 @@ body {
    SIDEBAR
 ========================= */
 .sidebar {
-  width: 200px;
-  background: #1f2937;
-  color: white;
-  padding: 15px;
+  width: 220px;
+  background: var(--bg-sidebar);
+  color: var(--text-primary);
+  padding: 16px;
+  border-right: 1px solid var(--border);
 }
 
 .sidebar h3 {
   margin-top: 0;
+  font-size: 14px;
+  background: var(--accent-light);
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
 }
 
 .sidebar ul {
@@ -37,13 +70,54 @@ body {
 .sidebar li {
   padding: 10px;
   cursor: pointer;
-  border-radius: 6px;
-  display: block;
-  transition: 0.2s;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
 }
 
 .sidebar li:hover {
-  background: #374151;
+  background: var(--bg-hover);
+}
+
+.sidebar li.active {
+  background: var(--bg-hover);
+  font-weight: 500;
+}
+
+/* =========================
+   SEARCH (FINAL FIX)
+========================= */
+.search-wrapper {
+  position: relative;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.search-box {
+  width: 100%;
+  padding: 10px 10px 10px 36px;
+  border-radius: var(--radius-md);
+  border: none;
+  outline: none;
+  background: var(--accent-light) !important; /* force */
+}
+
+.search-box::placeholder {
+  color: var(--text-secondary);
+  font-size: 13px;
 }
 
 /* =========================
@@ -51,50 +125,106 @@ body {
 ========================= */
 .content {
   flex: 1;
-  padding: 20px;
+  padding: 24px 32px;
 }
 
 /* =========================
    SECTIONS
 ========================= */
 .section {
-  margin-top: 10px;
+  margin-top: 0;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 /* =========================
-   CARD GRID (TOOLS)
+   CARD GRID
 ========================= */
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }
 
 /* =========================
-   TOOL CARD
+   CARD
 ========================= */
 .card {
-  padding: 15px;
-  background: white;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 16px 18px;
+  background: var(--bg-card);
+  border-radius: 14px;
   cursor: pointer;
-  position: relative;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: 0.2s;
+  border: 1px solid var(--border);
+
+  transition: var(--transition);
 }
 
 .card:hover {
-  transform: translateY(-3px);
+  background: var(--bg-hover);
+}
+
+/* LEFT ICON */
+.card-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--icon-bg);
+  padding: 10px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* TEXT */
+.card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: 12px;
+  color: var(--text-secondary);
 }
 
 /* =========================
-   FAVORITE ICON
+   HEART SYSTEM (FULL FIX)
 ========================= */
 .fav-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  background: var(--icon-bg);
+  border-radius: 10px;
+  padding: 6px;
   cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fav-icon img {
+  width: 18px;
+  height: 18px;
+}
+
+/* filled state */
+.fav-icon.active {
+  background: #d6ccf5;
 }
 
 /* =========================
@@ -103,32 +233,33 @@ body {
 .mobile-nav {
   display: none;
 }
+
 .mobile-nav div {
   cursor: pointer;
   padding: 8px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
+}
+
+.mobile-nav div:hover {
+  background: var(--border);
 }
 
 /* =========================
    CLOSE BUTTON
 ========================= */
-
 .back-btn {
   margin: 10px;
   padding: 8px 12px;
   background: #1f2937;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-size: 14px;
 }
 
 .back-btn:hover {
   background: #374151;
-}
-.mobile-nav div:hover {
-  background: #e5e7eb;
 }
 
 /* =========================
@@ -137,12 +268,13 @@ body {
 input {
   width: 100%;
   padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
   margin-bottom: 12px;
   font-size: 14px;
 }
 
+/* BUTTON GROUP */
 .btn-group {
   display: flex;
   gap: 10px;
@@ -151,7 +283,7 @@ input {
 button {
   flex: 1;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
   font-weight: 500;
@@ -167,21 +299,23 @@ button {
 }
 
 .secondary {
-  background: #e5e7eb;
+  background: var(--border);
 }
 
 .secondary:hover {
   background: #d1d5db;
 }
 
+/* RESULT BOX */
 .result-box {
   margin-top: 15px;
   padding: 10px;
   background: #f9fafb;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   display: none;
 }
 
+/* COPY BUTTON */
 .copy-btn {
   margin-top: 8px;
   background: #10b981;
@@ -190,40 +324,36 @@ button {
 
 .copy-btn:hover {
   background: #059669;
-} 
- /* =========================
+}
+
+/* =========================
    FLOATING CLOSE BUTTON
 ========================= */
-
 .close-floating {
   position: absolute;
   top: 15px;
   right: 20px;
-
   background: rgba(0,0,0,0.6);
   color: white;
   border: none;
-
   width: 32px;
   height: 32px;
   border-radius: 50%;
-
   cursor: pointer;
   font-size: 16px;
 }
 
-/* hover */
 .close-floating:hover {
   background: black;
 }
+
 /* =========================
    TOOL ISOLATION
 ========================= */
- 
 .tool-root * {
   box-sizing: border-box;
 }
-/* optional: reapply font */
+
 .tool-root {
   font-family: Arial, sans-serif;
 }
@@ -231,50 +361,43 @@ button {
 /* =========================
    EXTENSION MODE
 ========================= */
- 
-
 .extension-mode {
   width: 360px;
   min-height: 500px;
   overflow-x: hidden;
 }
 
-/* Hide sidebar */
 .extension-mode .sidebar {
   display: none;
 }
 
-/* Full width content */
 .extension-mode .content {
   margin: 0;
   padding: 10px;
 }
 
-/* Grid → single column */
 .extension-mode .card-container {
   grid-template-columns: 1fr;
 }
 
-/* Cards spacing */
-.extension-mode .card {
-  margin-bottom: 10px;
-}
-
-/* Mobile nav always visible */
 .extension-mode .mobile-nav {
   display: flex;
 }
 
-
-
-/* meow */
-@media (max-width: 500px) {
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
   .sidebar {
     display: none;
   }
 
   .content {
-    padding: 10px;
+    padding: 12px;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
   }
 
   .mobile-nav {
@@ -284,7 +407,7 @@ button {
     width: 100%;
     background: white;
     justify-content: space-around;
-    padding: 10px;
-    border-top: 1px solid #ccc;
+    padding: 12px;
+    border-top: 1px solid var(--border);
   }
 }

@@ -163,6 +163,9 @@ async function router() {
       document.getElementById("app").innerHTML = "<p>Loading tools...</p>";
       return;
     }
+    setTimeout(() => {
+      showSection("tools");
+    }, 0);
     document.getElementById("app").innerHTML = mainLayout;
 
     renderTools();
@@ -207,6 +210,16 @@ function showSection(section) {
 
   document.getElementById(section).style.display = "block";
 
+  const navTools = document.getElementById("nav-tools");
+  const navFav = document.getElementById("nav-favorites");
+
+  if (section === "tools") {
+    navTools.classList.add("active");
+    navFav.classList.remove("active");
+  } else {
+    navFav.classList.add("active");
+    navTools.classList.remove("active");
+  }
 }
 
 
@@ -243,7 +256,6 @@ function toggleFavorite(toolId) {
 function renderTools() {
 
   const container = document.getElementById("toolContainer");
-
   if (!container) return;
 
   container.innerHTML = "";
@@ -254,38 +266,62 @@ function renderTools() {
 
     const card = document.createElement("div");
     card.className = "card";
-
     card.onclick = () => openTool(tool);
 
-    const favIcon = document.createElement("span");
+    // 🔥 LEFT ICON
+    const icon = document.createElement("img");
+    icon.className = "card-icon";
+    const iconPath = tool.icon
+      ? getAsset(tool.icon)
+      : getAsset("assets/icons/tool.svg");
+
+    icon.src = iconPath;icon.onerror = () => {
+  icon.src = getAsset("assets/icons/tool.svg");
+};
+
+    // 🔥 TEXT BLOCK
+    const text = document.createElement("div");
+    text.className = "card-text";
+
+    const title = document.createElement("div");
+    title.className = "title";
+    title.innerText = tool.name;
+
+    const subtitle = document.createElement("div");
+    subtitle.className = "subtitle";
+    subtitle.innerText = tool.description || "Tool Details";
+
+    text.appendChild(title);
+    text.appendChild(subtitle);
+
+    // 🔥 HEART ICON
+    const favIcon = document.createElement("img");
     favIcon.className = "fav-icon";
-    favIcon.innerText = favs.includes(tool.id) ? "⭐" : "☆";
+    favIcon.src = "assets/icons/heart.svg";
+
+    if (favs.includes(tool.id)) {
+      favIcon.style.opacity = "1";
+    }
 
     favIcon.addEventListener("click", (e) => {
       e.stopPropagation();
       toggleFavorite(tool.id);
     });
 
-    const title = document.createElement("h4");
-    title.innerText = `${tool.icon || "🛠"} ${tool.name}`;
-
+    card.appendChild(icon);
+    card.appendChild(text);
     card.appendChild(favIcon);
-    card.appendChild(title);
+
     container.appendChild(card);
-
   });
-
 }
-
 
 /* =========================
    RENDER FAVORITES
 ========================= */
-
 function renderFavorites() {
 
   const container = document.getElementById("favContainer");
-
   if (!container) return;
 
   container.innerHTML = "";
@@ -298,31 +334,42 @@ function renderFavorites() {
 
       const card = document.createElement("div");
       card.className = "card";
-
       card.onclick = () => openTool(tool);
 
-      const favIcon = document.createElement("span");
+      const icon = document.createElement("img");
+      icon.className = "card-icon";
+      icon.src = tool.icon || "assets/icons/tool.svg";
+
+      const text = document.createElement("div");
+      text.className = "card-text";
+
+      const title = document.createElement("div");
+      title.className = "title";
+      title.innerText = tool.name;
+
+      const subtitle = document.createElement("div");
+      subtitle.className = "subtitle";
+      subtitle.innerText = tool.description || "Tool Details";
+
+      text.appendChild(title);
+      text.appendChild(subtitle);
+
+      const favIcon = document.createElement("img");
       favIcon.className = "fav-icon";
-      favIcon.innerText = "⭐";
+      favIcon.src = "assets/icons/heart.svg";
 
       favIcon.addEventListener("click", (e) => {
         e.stopPropagation();
         toggleFavorite(tool.id);
       });
 
-      const title = document.createElement("h4");
-      title.innerText = `${tool.icon || "🛠"} ${tool.name}`;
-
+      card.appendChild(icon);
+      card.appendChild(text);
       card.appendChild(favIcon);
-      card.appendChild(title);
 
       container.appendChild(card);
-
     });
-
 }
-
-
 /* =========================
    OPEN TOOL
 ========================= */

@@ -14,7 +14,7 @@
     <!-- PWA -->
     <link rel="manifest" href="manifest.json">
 
-    <!-- Optional favicon (removes 404 error) -->
+    <!-- Favicon -->
     <link rel="icon" href="assets/icons/icon-192.png">
 </head>
 
@@ -25,10 +25,25 @@
         <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <h3>Menu</h3>
+
             <ul>
-                <li id="nav-tools">🛠 Tools</li>
-                <li id="nav-favorites">⭐ Favorites</li>
+                <!-- 🔥 SVG ICON -->
+                <li id="nav-tools" class="active">
+                    <img src="assets/icons/tool.svg" class="nav-icon">
+                    Tools
+                </li>
+
+                <li id="nav-favorites">
+                    <img src="assets/icons/heart.svg" class="nav-icon">
+                    Favorites
+                </li>
             </ul>
+
+            <!-- Search -->
+            <div class="search-wrapper">
+                <img src="assets/icons/search.svg" class="search-icon">
+                <input type="text" placeholder="Search Tools" class="search-box">
+            </div>
         </div>
 
         <!-- Content -->
@@ -38,7 +53,7 @@
 
                 <!-- Tools -->
                 <div id="tools" class="section">
-                    <h2>Available Tools</h2>
+                    <h2>Latest Tools</h2>
                     <div id="toolContainer" class="card-container"></div>
                 </div>
 
@@ -56,13 +71,18 @@
 
     <!-- Mobile Navigation -->
     <div class="mobile-nav">
-        <div id="mob-tools">🛠 Tools</div>
-        <div id="mob-favorites">⭐ Favorites</div>
+        <div id="mob-tools">
+            <img src="assets/icons/tools.svg" class="nav-icon">
+            Tools
+        </div>
+
+        <div id="mob-favorites">
+            <img src="assets/icons/heart.svg" class="nav-icon">
+            Favorites
+        </div>
     </div>
 
-    <!-- ❌ IMPORTANT: NO isExtension HERE -->
-    <!-- ✅ All logic handled in main.js -->
-
+    <!-- JS -->
     <script src="main.js"></script>
 
 </body>
