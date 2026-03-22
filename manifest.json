@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Mini Tool App",
+  "version": "1.0",
+  "description": "Mini Tool Platform",
+
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Mini Tool App"
+  },
+
+  "permissions": ["storage"],
+
+  "icons": {
+    "16": "assets/icons/icon-192.png",
+    "48": "assets/icons/icon-192.png",
+    "128": "assets/icons/icon-512.png"
+  }
+}

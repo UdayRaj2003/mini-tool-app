@@ -1,0 +1,50 @@
+.pw-container{
+  max-width:400px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+#passwordOutput{
+  padding:10px;
+  border-radius:6px;
+  border:none;
+  font-size:16px;
+  width:100%;
+}
+
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.options label{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+}
+
+.actions button{
+  flex:1;
+  padding:10px;
+  border-radius:6px;
+  border:none;
+  cursor:pointer;
+}
+
+#generateBtn{
+  background:#4CAF50;
+  color:white;
+}
+
+#copyBtn{
+  background:#2196F3;
+  color:white;
+}

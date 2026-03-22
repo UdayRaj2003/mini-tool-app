@@ -1,0 +1,536 @@
+/* =========================
+   VARIABLES (GLOBAL SYSTEM)
+========================= */
+:root {
+  /* BASE */
+  --bg-main: #ffffff;
+  --bg-sidebar: #efedf5;
+  --bg-card: #f3eff8;
+  --bg-hover: #f3f0f9;
+  --bg-active-link: rgb(129 86 147);
+  --text-primary: #49454F;
+  --text-secondary: #666;
+
+  --border: #e4e4e7;
+
+  /* ACCENTS */
+  --accent-light: #EADDFF;
+  --icon-bg: var(--accent-light);
+
+  /* HEART SYSTEM (CLEAN) */
+  --heart-bg: var(--accent-light);
+  /* constant circle */
+  --heart-outline: var(--text-primary);
+  /* default outline */
+  --heart-fill: #743bc9;
+  /* active fill */
+
+  /* UI */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+
+  --transition: 0.2s ease;
+}
+
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg-main);
+}
+
+/* =========================
+   APP LAYOUT
+========================= */
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+  width: 360px;
+  background: var(--bg-sidebar);
+  padding: 12px;
+  border-right: 1px solid #CAC4D0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar span {
+  height: 58px;
+  display: flex;
+  align-items: center;
+
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--accent-light);
+  border: 1px solid #F4ECF5;
+  border-radius: 8px;
+
+  padding: 0 16px;
+
+  line-height: 20px;
+  letter-spacing: 0.1px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  height: 56px;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 0 16px;
+
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  color: var(--text-primary);
+}
+
+.sidebar li:hover {
+  background: var(--bg-hover);
+  cursor: pointer;
+}
+
+.sidebar li.active {
+  color: var(--bg-active-link);
+  font-weight: 700;
+}
+
+/* =========================
+   SEARCH
+========================= */
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.search-box {
+  width: 100%;
+  padding: 10px 12px 10px 42px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.search-box::placeholder {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+/* =========================
+   CONTENT
+========================= */
+.content {
+  flex: 1;
+  padding: 32px;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+.section h2 {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.1px;
+  color: var(--text-primary);
+}
+
+/* =========================
+   CARD GRID
+========================= */
+.card-container {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   CARD
+========================= */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  width: 440px;
+  height: 80px;
+  padding: 16px;
+
+  background: var(--bg-card);
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+
+  transition: var(--transition);
+}
+
+.card:hover {
+  background: var(--bg-hover);
+}
+
+/* ICON */
+.card-icon {
+  width: 45px;
+  height: 45px;
+  background: var(--icon-bg);
+  padding: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  object-fit: contain;
+
+}
+
+/* TEXT */
+.card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* =========================
+   ❤️ HEART SYSTEM (FINAL FIX)
+========================= */
+.fav-icon {
+  margin-left: auto;
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+  border: 1px solid var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: transform 0.15s ease;
+
+  /* 🔥 constant bg */
+  background: var(--heart-bg);
+}
+
+/* hover effect */
+.fav-icon:hover {
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.04);
+}
+
+/* DO NOT CHANGE BG */
+.fav-icon.active {
+  background: var(--heart-bg);
+}
+
+/* HEART */
+.heart {
+  width: 20px;
+  height: 20px;
+}
+
+/* default (outline only) */
+.heart path {
+  fill: transparent;
+  stroke: var(--heart-outline);
+  stroke-width: 2.2;
+  transition: fill 0.25s ease, stroke 0.25s ease, transform 0.2s ease;
+}
+
+/* active (filled) */
+.fav-icon.active .heart path {
+  fill: var(--heart-fill);
+  stroke: var(--heart-fill);
+}
+
+/* 🔥 animation */
+.fav-icon.active .heart {
+  animation: heartPop 0.25s ease;
+}
+
+@keyframes heartPop {
+  0% {
+    transform: scale(0.8);
+  }
+
+  60% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* click press */
+.fav-icon:active {
+  transform: scale(0.9);
+}
+
+/* =========================
+   MOBILE NAV
+========================= */
+/* =========================
+   MOBILE NAV (CLEAN FIX)
+========================= */
+.mobile-nav {
+  display: none;
+}
+
+/* NAV ITEM */
+.mobile-nav div {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  padding: 10px;
+  cursor: pointer;
+
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text-primary);
+
+  transition: var(--transition);
+}
+
+/* ICON */
+.mobile-nav img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+/* HOVER */
+.mobile-nav div:hover {
+  background: var(--bg-hover);
+}
+
+/* ACTIVE */
+.mobile-nav div.active {
+  background: var(--accent-light);
+  color: var(--bg-active-link);
+  font-weight: 700;
+
+}
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+.back-btn {
+  margin: 10px;
+  padding: 8px 12px;
+  background: #1f2937;
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #374151;
+}
+
+/* =========================
+   TOOL INPUT
+========================= */
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+/* BUTTONS */
+.btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  padding: 8px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+}
+
+.primary {
+  background: #667eea;
+  color: white;
+}
+
+.primary:hover {
+  background: #5563d1;
+}
+
+.secondary {
+  background: var(--border);
+}
+
+.secondary:hover {
+  background: #d1d5db;
+}
+
+/* RESULT */
+.result-box {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f9fafb;
+  border-radius: var(--radius-md);
+  display: none;
+}
+
+/* COPY */
+.copy-btn {
+  margin-top: 8px;
+  background: #10b981;
+  color: white;
+}
+
+.copy-btn:hover {
+  background: #059669;
+}
+
+/* =========================
+   FLOAT BUTTON
+========================= */
+.close-floating {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.close-floating:hover {
+  background: black;
+}
+
+/* =========================
+   TOOL ROOT
+========================= */
+.tool-root * {
+  box-sizing: border-box;
+}
+
+.tool-root {
+  font-family: Arial, sans-serif;
+}
+
+/* =========================
+   EXTENSION MODE
+========================= */
+.extension-mode {
+  width: 360px;
+  min-height: 500px;
+  overflow-x: hidden;
+}
+
+.extension-mode .sidebar {
+  display: none;
+}
+
+.extension-mode .card {
+  width: 100%;
+}
+
+.extension-mode .content {
+  margin: 0;
+  padding: 10px;
+  overflow-x: hidden;
+  padding-bottom: 70px;
+}
+
+.extension-mode .mobile-nav {
+  display: flex;
+}
+
+.extension-mode .card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+
+  .content {
+    padding: 12px;
+  }
+
+  .mobile-nav {
+    display: flex;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    background: var(--bg-main);
+
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 8px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}

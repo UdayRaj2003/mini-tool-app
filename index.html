@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+
+    <title>Mini Tool App</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/icons/icon-192.png">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <span>Master Tools</span>
+
+            <ul>
+                <!-- 🔥 SVG ICON -->
+                <li id="nav-tools" class="active">
+                    <img src="assets/icons/tool.svg" class="nav-icon">
+                    Tools
+                </li>
+
+                <li id="nav-favorites">
+                    <img src="assets/icons/heart.svg" class="nav-icon">
+                    Favorites
+                </li>
+            </ul>
+
+            <!-- Search -->
+            <div class="search-wrapper">
+                <img src="assets/icons/search.svg" class="search-icon">
+                <input type="text" placeholder="Search Tools" class="search-box">
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content" id="content">
+
+            <div id="app">
+
+                <!-- Tools -->
+                <div id="tools" class="section">
+                    <h2>Latest Tools</h2>
+                    <div id="toolContainer" class="card-container"></div>
+                </div>
+
+                <!-- Favorites -->
+                <div id="favorites" class="section" style="display:none;">
+                    <h2>Favorite Tools</h2>
+                    <div id="favContainer" class="card-container"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <div id="mob-tools">
+            <img src="assets/icons/tool.svg" class="nav-icon">
+            Tools
+        </div>
+
+        <div id="mob-favorites">
+            <img src="assets/icons/heart.svg" class="nav-icon">
+            Favorites
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="main.js"></script>
+
+</body>
+
+</html>
