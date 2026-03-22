@@ -252,7 +252,6 @@ function toggleFavorite(toolId) {
 /* =========================
    RENDER TOOLS
 ========================= */
-
 function renderTools() {
 
   const container = document.getElementById("toolContainer");
@@ -268,18 +267,20 @@ function renderTools() {
     card.className = "card";
     card.onclick = () => openTool(tool);
 
-    // 🔥 LEFT ICON
+    // ICON
     const icon = document.createElement("img");
     icon.className = "card-icon";
-    const iconPath = tool.icon
+    const isValidPath = tool.icon && tool.icon.includes("/");
+
+    const iconPath = isValidPath
       ? getAsset(tool.icon)
       : getAsset("assets/icons/tool.svg");
+    icon.src = iconPath;
+    icon.onerror = () => {
+      icon.src = getAsset("assets/icons/tool.svg");
+    };
 
-    icon.src = iconPath;icon.onerror = () => {
-  icon.src = getAsset("assets/icons/tool.svg");
-};
-
-    // 🔥 TEXT BLOCK
+    // TEXT
     const text = document.createElement("div");
     text.className = "card-text";
 
@@ -294,13 +295,18 @@ function renderTools() {
     text.appendChild(title);
     text.appendChild(subtitle);
 
-    // 🔥 HEART ICON
-    const favIcon = document.createElement("img");
+    // ❤️ HEART (FILLED SVG)
+    const favIcon = document.createElement("div");
     favIcon.className = "fav-icon";
-    favIcon.src = "assets/icons/heart.svg";
+
+    favIcon.innerHTML = `
+      <svg class="heart" viewBox="0 0 24 24">
+        <path d="m7 3.4c-1.5355 0-3.0784 0.5-4.25 1.7-2.3431 2.4-2.2788 6.1 0 8.5l9.25 9.8 9.25-9.8c2.279-2.4 2.343-6.1 0-8.5-2.343-2.3-6.157-2.3-8.5 0l-0.75 0.8-0.75-0.8c-1.172-1.2-2.7145-1.7-4.25-1.7z"/>
+      </svg>
+    `;
 
     if (favs.includes(tool.id)) {
-      favIcon.style.opacity = "1";
+      favIcon.classList.add("active");
     }
 
     favIcon.addEventListener("click", (e) => {
@@ -315,7 +321,6 @@ function renderTools() {
     container.appendChild(card);
   });
 }
-
 /* =========================
    RENDER FAVORITES
 ========================= */
@@ -338,7 +343,15 @@ function renderFavorites() {
 
       const icon = document.createElement("img");
       icon.className = "card-icon";
-      icon.src = tool.icon || "assets/icons/tool.svg";
+
+      const iconPath = tool.icon
+        ? getAsset(tool.icon)
+        : getAsset("assets/icons/tool.svg");
+
+      icon.src = iconPath;
+      icon.onerror = () => {
+        icon.src = getAsset("assets/icons/tool.svg");
+      };
 
       const text = document.createElement("div");
       text.className = "card-text";
@@ -354,9 +367,19 @@ function renderFavorites() {
       text.appendChild(title);
       text.appendChild(subtitle);
 
-      const favIcon = document.createElement("img");
+      // ❤️ HEART
+      const favIcon = document.createElement("div");
       favIcon.className = "fav-icon";
-      favIcon.src = "assets/icons/heart.svg";
+
+      favIcon.innerHTML = `
+        <svg class="heart" viewBox="0 0 24 24">
+          <path d="m7 3.4c-1.5355 0-3.0784 0.5-4.25 1.7-2.3431 2.4-2.2788 6.1 0 8.5l9.25 9.8 9.25-9.8c2.279-2.4 2.343-6.1 0-8.5-2.343-2.3-6.157-2.3-8.5 0l-0.75 0.8-0.75-0.8c-1.172-1.2-2.7145-1.7-4.25-1.7z"/>
+        </svg>
+      `;
+
+      if (favs.includes(tool.id)) {
+        favIcon.classList.add("active");
+      }
 
       favIcon.addEventListener("click", (e) => {
         e.stopPropagation();
