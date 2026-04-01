@@ -1,61 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Mini Tool App</title>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#667eea">
 
+    <title>Mini Tool App</title>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- PWA -->
     <link rel="manifest" href="manifest.json">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/icons/icon-192.png">
 </head>
 
 <body>
 
-<div class="app">
+    <div class="app">
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h3>Menu</h3>
-        <ul>
-            <li onclick="location.hash='/'">🛠 Tools</li>
-            <li onclick="location.hash='/favorites'">⭐ Favorites</li>
-        </ul>
-    </div>
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <span>Master Tools</span>
 
-    <!-- Content -->
-    <div class="content">
+            <ul>
+                <!-- 🔥 SVG ICON -->
+                <li id="nav-tools" class="active">
+                    <img src="assets/icons/tool.svg" class="nav-icon">
+                    Tools
+                </li>
 
-        <!-- ROUTER CONTENT -->
-        <div id="app">
+                <li id="nav-favorites">
+                    <img src="assets/icons/heart.svg" class="nav-icon">
+                    Favorites
+                </li>
+            </ul>
 
-            <!-- Default tools page -->
-            <div id="tools" class="section">
-                <h2>Available Tools</h2>
-                <div id="toolContainer" class="card-container"></div>
+            <!-- Search -->
+            <div class="search-wrapper">
+                <img src="assets/icons/search.svg" class="search-icon">
+                <input type="text" placeholder="Search Tools" class="search-box">
             </div>
+        </div>
 
-            <div id="favorites" class="section" style="display:none;">
-                <h2>Favorite Tools</h2>
-                <div id="favContainer" class="card-container"></div>
+        <!-- Content -->
+        <div class="content" id="content">
+
+            <div id="app">
+
+                <!-- Tools -->
+                <div id="tools" class="section">
+                    <h2>Latest Tools</h2>
+                    <div id="toolContainer" class="card-container"></div>
+                </div>
+
+                <!-- Favorites -->
+                <div id="favorites" class="section" style="display:none;">
+                    <h2>Favorite Tools</h2>
+                    <div id="favContainer" class="card-container"></div>
+                </div>
+
             </div>
 
         </div>
 
     </div>
 
-</div>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <div id="mob-tools">
+            <img src="assets/icons/tool.svg" class="nav-icon">
+            Tools
+        </div>
 
-<!-- Mobile Bottom Navigation -->
+        <div id="mob-favorites">
+            <img src="assets/icons/heart.svg" class="nav-icon">
+            Favorites
+        </div>
+    </div>
 
-<div class="mobile-nav">
-    <div onclick="location.hash='/'">🛠 Tools</div>
-    <div onclick="location.hash='/favorites'">⭐ Favorites</div>
-</div>
-
-<script src="main.js"></script>
+    <!-- JS -->
+    <script src="main.js"></script>
 
 </body>
-</html> 
+
+</html>
