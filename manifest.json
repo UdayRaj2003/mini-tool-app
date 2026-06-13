@@ -3,14 +3,14 @@
   "name": "Mini Tool App",
   "version": "1.0",
   "description": "Mini Tool Platform",
-
   "action": {
     "default_popup": "index.html",
     "default_title": "Mini Tool App"
   },
-
-  "permissions": ["storage"],
-
+  "display": "standalone",
+  "permissions": [
+    "storage"
+  ], 
   "icons": {
     "16": "assets/icons/icon-192.png",
     "48": "assets/icons/icon-192.png",
