@@ -3,14 +3,20 @@
   "name": "Mini Tool App",
   "version": "1.0",
   "description": "Mini Tool Platform",
-  "action": {
-    "default_popup": "index.html",
+  "action": { 
     "default_title": "Mini Tool App"
   },
   "display": "standalone",
   "permissions": [
-    "storage"
-  ], 
+    "storage",
+    "sidePanel"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
   "icons": {
     "16": "assets/icons/icon-192.png",
     "48": "assets/icons/icon-192.png",
