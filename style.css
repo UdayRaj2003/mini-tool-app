@@ -43,6 +43,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: var(--bg-main);
+  overflow-x: hidden;
 }
 
 /* =========================
@@ -182,8 +183,8 @@ body {
   display: flex;
   align-items: center;
   gap: 16px;
-
-  width: 440px;
+  width: 100%;
+  max-width: 440px;
   height: 80px;
   padding: 16px;
 
@@ -506,9 +507,12 @@ button {
     display: none;
   }
 
-
+.section {
+  width: 100%;
+}
   .content {
-    padding: 12px;
+    padding: 12px;width: 100%;
+  min-width: 0;
   }
 
   .mobile-nav {
@@ -531,6 +535,10 @@ button {
   .card-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 12px;width: 100%;
   }
+  .card {
+  width: 100%;
+  max-width: 100%;
+}
 }
