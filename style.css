@@ -218,12 +218,19 @@ body {
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  flex: 1;
+  min-width: 0;
 }
 
 .title {
   font-size: 15px;
   font-weight: 500;
   color: var(--text-primary);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .subtitle {
@@ -248,7 +255,7 @@ body {
 
   cursor: pointer;
   transition: transform 0.15s ease;
-
+  flex-shrink: 0;
   /* 🔥 constant bg */
   background: var(--heart-bg);
 }
