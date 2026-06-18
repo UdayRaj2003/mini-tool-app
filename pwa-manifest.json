@@ -1,0 +1,53 @@
+{
+    "name": "Mini Tools",
+    "short_name": "Tools",
+    "description": "A collection of useful productivity and utility tools.",
+    "start_url": ".",
+    "id": "/mini-tool-app/",
+    "display": "standalone",
+    "display_override": [
+        "window-controls-overlay",
+        "standalone"
+      ],
+    "orientation": "portrait-primary",
+    "background_color": "#FFFFFF",
+    "theme_color": "#815693",
+    "icons": [
+        {
+            "src": "assets/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "assets/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "assets/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "categories": [
+        "productivity",
+        "utilities"
+    ],
+    "screenshots": [
+        {
+            "src": "assets/screenshots/screenshot-mobile.png",
+            "sizes": "390x844",
+            "type": "image/png",
+            "form_factor": ""
+        },
+        {
+            "src": "assets/screenshots/screenshot-wide.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": ""
+        }
+    ]
+}

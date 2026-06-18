@@ -2,6 +2,8 @@
    VARIABLES (GLOBAL SYSTEM)
 ========================= */
 :root {
+  --brand-primary: #815693;
+
   /* BASE */
   --bg-main: #ffffff;
   --bg-sidebar: #efedf5;
@@ -12,7 +14,7 @@
   --text-secondary: #666;
 
   --border: #e4e4e7;
-
+  --bg-active-link: var(--brand-primary);
   /* ACCENTS */
   --accent-light: #EADDFF;
   --icon-bg: var(--accent-light);
@@ -239,7 +241,7 @@ body {
 }
 
 /* =========================
-   ❤️ HEART SYSTEM (FINAL FIX)
+   ❤️ HEART SYSTEM  
 ========================= */
 .fav-icon {
   margin-left: auto;

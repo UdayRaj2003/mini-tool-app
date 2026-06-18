@@ -1,12 +1,11 @@
 {
   "manifest_version": 3,
   "name": "Mini Tool App",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Mini Tool Platform",
   "action": { 
     "default_title": "Mini Tool App"
-  },
-  "display": "standalone",
+  }, 
   "permissions": [
     "storage",
     "sidePanel"
