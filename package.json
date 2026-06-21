@@ -1,0 +1,28 @@
+{
+  "name": "mini-tool-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "build:css": "postcss tailwind-input.css -o tailwind-output.css",
+    "watch:css": "postcss tailwind-input.css -o tailwind-output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UdayRaj2003/mini-tool-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UdayRaj2003/mini-tool-app/issues"
+  },
+  "homepage": "https://github.com/UdayRaj2003/mini-tool-app#readme",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.1",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.15",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.3.1"
+  }
+}
