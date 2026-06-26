@@ -226,7 +226,7 @@ body {
 /* =========================
    ❤️ HEART SYSTEM (FINAL FIX)
 ========================= */
-.fav-icon {
+/* .fav-icon {
   margin-left: auto;
   width: 45px;
   height: 45px;
@@ -240,15 +240,13 @@ body {
 
   cursor: pointer;
   transition: transform 0.15s ease;
-
-  /* 🔥 constant bg */
+ 
   background: var(--heart-bg);
 }
-
-/* hover effect */
+ 
 .fav-icon:hover {
   box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.04);
-}
+} 
 
 /* DO NOT CHANGE BG */
 .fav-icon.active {
