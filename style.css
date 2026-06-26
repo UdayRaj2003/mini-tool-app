@@ -49,24 +49,16 @@ body {
 /* =========================
    APP LAYOUT
 ========================= */
-.app {
+/* .app {
   display: flex;
   min-height: 100vh;
-}
+} */
 
 /* =========================
    SIDEBAR
 ========================= */
-.sidebar {
-  width: 360px;
-  background: var(--bg-sidebar);
-  padding: 12px;
-  border-right: 1px solid #CAC4D0;
-
-  display: flex;
-  flex-direction: column;
-}
-
+/* Migrated to Tailwind - .sidebar now uses w-sidebar-width p-3 border-r border-[#CAC4D0] flex flex-col bg-background-sidebar */
+/* 
 .sidebar span {
   height: 58px;
   display: flex;
@@ -103,12 +95,12 @@ body {
   font-size: 14px;
   letter-spacing: 0.1px;
   color: var(--text-primary);
-}
+} */
 
-.sidebar li:hover {
+/* .sidebar li:hover {
   background: var(--bg-hover);
   cursor: pointer;
-}
+} */
 
 .sidebar li.active {
   color: var(--bg-active-link);
@@ -118,7 +110,7 @@ body {
 /* =========================
    SEARCH
 ========================= */
-.search-wrapper {
+/* .search-wrapper {
   position: relative;
   width: 100%;
 }
@@ -141,31 +133,31 @@ body {
   border: none;
   outline: none;
   background: rgba(255, 255, 255, 0.7);
-}
+} */
 
-.search-box::placeholder {
+/* .search-box::placeholder {
   color: var(--text-secondary);
   font-size: 13px;
-}
+} */
 
 /* =========================
    CONTENT
 ========================= */
-.content {
+/* .content {
   flex: 1;
   padding: 32px;
-}
+} */
 
 /* =========================
    SECTIONS
 ========================= */
-.section h2 {
+/* .section h2 {
   margin-bottom: 20px;
   font-weight: 500;
   font-size: 18px;
   letter-spacing: 0.1px;
   color: var(--text-primary);
-}
+} */
 
 /* =========================
    CARD GRID

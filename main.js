@@ -264,12 +264,12 @@ function renderTools() {
   tools.forEach(tool => {
 
     const card = document.createElement("div");
-    card.className = "card";
+    card.className = "card flex items-center gap-4 w-full max-w-[440px] h-[80px] p-4 bg-background-card rounded-[12px] cursor-pointer border border-border transition-all duration-200 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:bg-background-hover";
     card.onclick = () => openTool(tool);
 
     // ICON
     const icon = document.createElement("img");
-    icon.className = "card-icon";
+    icon.className = "card-icon w-[45px] h-[45px] bg-accent-light p-[10px] rounded-full border border-border flex-shrink-0 object-contain";
     const isValidPath = tool.icon && tool.icon.includes("/");
 
     const iconPath = isValidPath
@@ -282,14 +282,14 @@ function renderTools() {
 
     // TEXT
     const text = document.createElement("div");
-    text.className = "card-text";
+    text.className = "card-text flex flex-col gap-1";
 
     const title = document.createElement("div");
-    title.className = "title";
+    title.className = "title text-[15px] font-medium text-text-primary";
     title.innerText = tool.name;
 
     const subtitle = document.createElement("div");
-    subtitle.className = "subtitle";
+    subtitle.className = "subtitle text-[13px] text-text-secondary";
     subtitle.innerText = tool.description || "Tool Details";
 
     text.appendChild(title);
@@ -338,11 +338,11 @@ function renderFavorites() {
     .forEach(tool => {
 
       const card = document.createElement("div");
-      card.className = "card";
+      card.className = "card flex items-center gap-4 w-full max-w-[440px] h-[80px] p-4 bg-background-card rounded-[12px] cursor-pointer border border-border transition-all duration-200 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:bg-background-hover";
       card.onclick = () => openTool(tool);
 
       const icon = document.createElement("img");
-      icon.className = "card-icon";
+      icon.className = "card-icon w-[45px] h-[45px] bg-accent-light p-[10px] rounded-full border border-border flex-shrink-0 object-contain";
 
       const iconPath = tool.icon
         ? getAsset(tool.icon)
@@ -354,14 +354,14 @@ function renderFavorites() {
       };
 
       const text = document.createElement("div");
-      text.className = "card-text";
+      text.className = "card-text flex flex-col gap-1";
 
       const title = document.createElement("div");
-      title.className = "title";
+      title.className = "title text-[15px] font-medium text-text-primary";
       title.innerText = tool.name;
 
       const subtitle = document.createElement("div");
-      subtitle.className = "subtitle";
+      subtitle.className = "subtitle text-[13px] text-text-secondary";
       subtitle.innerText = tool.description || "Tool Details";
 
       text.appendChild(title);
