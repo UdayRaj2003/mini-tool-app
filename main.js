@@ -369,7 +369,8 @@ function renderFavorites() {
 
       // ❤️ HEART
       const favIcon = document.createElement("div");
-      favIcon.className = "fav-icon";
+     favIcon.className =
+  "fav-icon ml-auto w-[45px] h-[45px] rounded-full border border-border flex items-center justify-center cursor-pointer transition-transform duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1)] bg-accent-light hover:shadow-[0_0_0_4px_rgba(0,0,0,0.04)]";
 
       favIcon.innerHTML = `
         <svg class="heart" viewBox="0 0 24 24">
